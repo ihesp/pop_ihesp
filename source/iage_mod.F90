@@ -181,10 +181,10 @@ contains
 
    if (my_task == master_task) then
       open (nml_in, file=nml_filename, status='old',iostat=nml_error)
-      if (nml_error /= 0) then  
+      if (nml_error /= 0) then
          nml_error = -1
       else
-         nml_error =  1      
+         nml_error =  1
       endif
       do while (nml_error > 0)
          read(nml_in, nml=iage_nml,iostat=nml_error)
@@ -228,11 +228,11 @@ contains
       TRACER_MODULE = c0
       if (my_task == master_task) then
           write(stdout,delim_fmt)
-          write(stdout,*) ' Initial 3-d Ideal Age set to all zeros' 
+          write(stdout,*) ' Initial 3-d Ideal Age set to all zeros'
           write(stdout,delim_fmt)
           call POP_IOUnitsFlush(POP_stdout) ; call POP_IOUnitsFlush(stdout)
       endif
-       
+
    case ('restart', 'ccsm_continue', 'ccsm_branch', 'ccsm_hybrid' )
 
       iage_restart_filename = char_blank
@@ -266,7 +266,7 @@ contains
                                   ind_name_table,          &
                                   tracer_init_ext,         &
                                   TRACER_MODULE)
- 
+
       if (n_topo_smooth > 0) then
          do k=1,km
             call fill_points(k,TRACER_MODULE(:,:,k,1,curtime,:), errorCode)
@@ -289,7 +289,6 @@ contains
 !-----------------------------------------------------------------------
 !  apply land mask to tracers
 !-----------------------------------------------------------------------
-
    do iblock=1,nblocks_clinic
       do n = 1,iage_tracer_cnt
          do k = 1,km

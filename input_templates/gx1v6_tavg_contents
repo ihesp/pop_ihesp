@@ -1,5 +1,5 @@
-#  An integer [1,9] in the first column identifies the field's output stream number. 
-#  To deactivate a field, replace the output stream number with  # or ! 
+#  An integer [1,9] in the first column identifies the field's output stream number.
+#  To deactivate a field, replace the output stream number with  # or !
 1  QFLUX
 1  BSF
 1  TFW_T
@@ -30,7 +30,6 @@
 1  SV
 1  HMXL
 2  HMXL_2
-1  HMXL_DR
 1  XMXL
 2  XMXL_2
 1  TMXL

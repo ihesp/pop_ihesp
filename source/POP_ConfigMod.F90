@@ -8,7 +8,7 @@
 !
 ! !DESCRIPTION:
 !  This module contains routines for reading input configuration
-!  data from a configuration file.  Variables for a specified module 
+!  data from a configuration file.  Variables for a specified module
 !  are read from an input file and broadcast to all processors.
 !  A default value for a variable can be specified and will be
 !  used if the variable is not found in the input file.
@@ -47,7 +47,7 @@
 !-----------------------------------------------------------------------
 
    character (POP_charLength) :: &
-      configFileDefault = 'pop2_in'
+      configFileDefault = 'pop_in'
 
    interface POP_ConfigRead
       module procedure POP_ConfigReadI4,      &
@@ -111,12 +111,12 @@ contains
 
 !-----------------------------------------------------------------------
 !
-!  if this is master task, open the file for reading and check for 
+!  if this is master task, open the file for reading and check for
 !  errors
 !
 !-----------------------------------------------------------------------
 
-   configFileDefault = 'pop2_in' // trim(inst_suffix)
+   configFileDefault = 'pop_in' // trim(inst_suffix)
 
    if (POP_myTask == POP_masterTask) then
       if (present(configFileName)) then
@@ -171,7 +171,7 @@ contains
 !BOC
 !-----------------------------------------------------------------------
 !
-!  if this is master task, open the file for reading and check for 
+!  if this is master task, open the file for reading and check for
 !  errors
 !
 !-----------------------------------------------------------------------
@@ -207,7 +207,7 @@ contains
 !  that has already been opened with a ConfigOpen call.  Each variable
 !  in the input file is associated with a module, so the module name
 !  must also be supplied.  If the variable is not present in the
-!  input file, the defaultValue is assigned.  After a successful read, 
+!  input file, the defaultValue is assigned.  After a successful read,
 !  the value for the variable is broadcasted to other processors.
 !  Finally, the value is printing to stdout using either a generic
 !  output string or user-specified output defined by outStringBefore
@@ -288,7 +288,7 @@ contains
 
    moduleFound = .false.
    if (POP_myTask == POP_masterTask .and. isOpen) then
-      moduleSearch: do 
+      moduleSearch: do
 
          ! read line from input file
          read(iunit, '(a100)', iostat=istat) inputString
@@ -312,7 +312,7 @@ contains
          else
             cycle moduleSearch
          endif
-         
+
       end do moduleSearch
 
       if (.not. moduleFound) then
@@ -328,7 +328,7 @@ contains
 
    variableFound = .false.
    if (POP_myTask == POP_masterTask .and. moduleFound) then
-      varSearch: do 
+      varSearch: do
 
          ! read line from input file: should be name = value
          read(iunit, '(a100)', iostat=istat) inputString
@@ -458,7 +458,7 @@ contains
 !  that has already been opened with a ConfigOpen call.  Each variable
 !  in the input file is associated with a module, so the module name
 !  must also be supplied.  If the variable is not present in the
-!  input file, the defaultValue is assigned.  After a successful read, 
+!  input file, the defaultValue is assigned.  After a successful read,
 !  the value for the variable is broadcasted to other processors.
 !  Finally, the value is printing to stdout using either a generic
 !  output string or user-specified output defined by outStringBefore
@@ -539,7 +539,7 @@ contains
 
    moduleFound = .false.
    if (POP_myTask == POP_masterTask .and. isOpen) then
-      moduleSearch: do 
+      moduleSearch: do
 
          ! read line from input file
          read(iunit, '(a100)', iostat=istat) inputString
@@ -563,7 +563,7 @@ contains
          else
             cycle moduleSearch
          endif
-         
+
       end do moduleSearch
 
       if (.not. moduleFound) then
@@ -579,7 +579,7 @@ contains
 
    variableFound = .false.
    if (POP_myTask == POP_masterTask .and. moduleFound) then
-      varSearch: do 
+      varSearch: do
 
          ! read line from input file: should be name = value
          read(iunit, '(a100)', iostat=istat) inputString
@@ -708,7 +708,7 @@ contains
 !  that has already been opened with a ConfigOpen call.  Each variable
 !  in the input file is associated with a module, so the module name
 !  must also be supplied.  If the variable is not present in the
-!  input file, the defaultValue is assigned.  After a successful read, 
+!  input file, the defaultValue is assigned.  After a successful read,
 !  the value for the variable is broadcasted to other processors.
 !  Finally, the value is printing to stdout using either a generic
 !  output string or user-specified output defined by outStringBefore
@@ -789,7 +789,7 @@ contains
 
    moduleFound = .false.
    if (POP_myTask == POP_masterTask .and. isOpen) then
-      moduleSearch: do 
+      moduleSearch: do
 
          ! read line from input file
          read(iunit, '(a100)', iostat=istat) inputString
@@ -813,7 +813,7 @@ contains
          else
             cycle moduleSearch
          endif
-         
+
       end do moduleSearch
 
       if (.not. moduleFound) then
@@ -829,7 +829,7 @@ contains
 
    variableFound = .false.
    if (POP_myTask == POP_masterTask .and. moduleFound) then
-      varSearch: do 
+      varSearch: do
 
          ! read line from input file: should be name = value
          read(iunit, '(a100)', iostat=istat) inputString
@@ -958,7 +958,7 @@ contains
 !  that has already been opened with a ConfigOpen call.  Each variable
 !  in the input file is associated with a module, so the module name
 !  must also be supplied.  If the variable is not present in the
-!  input file, the defaultValue is assigned.  After a successful read, 
+!  input file, the defaultValue is assigned.  After a successful read,
 !  the value for the variable is broadcasted to other processors.
 !  Finally, the value is printing to stdout using either a generic
 !  output string or user-specified output defined by outStringBefore
@@ -1039,7 +1039,7 @@ contains
 
    moduleFound = .false.
    if (POP_myTask == POP_masterTask .and. isOpen) then
-      moduleSearch: do 
+      moduleSearch: do
 
          ! read line from input file
          read(iunit, '(a100)', iostat=istat) inputString
@@ -1063,7 +1063,7 @@ contains
          else
             cycle moduleSearch
          endif
-         
+
       end do moduleSearch
 
       if (.not. moduleFound) then
@@ -1079,7 +1079,7 @@ contains
 
    variableFound = .false.
    if (POP_myTask == POP_masterTask .and. moduleFound) then
-      varSearch: do 
+      varSearch: do
 
          ! read line from input file: should be name = value
          read(iunit, '(a100)', iostat=istat) inputString
@@ -1216,7 +1216,7 @@ contains
 !  that has already been opened with a ConfigOpen call.  Each variable
 !  in the input file is associated with a module, so the module name
 !  must also be supplied.  If the variable is not present in the
-!  input file, the defaultValue is assigned.  After a successful read, 
+!  input file, the defaultValue is assigned.  After a successful read,
 !  the value for the variable is broadcasted to other processors.
 !  Finally, the value is printing to stdout using either a generic
 !  output string or user-specified output defined by outStringBefore
@@ -1297,7 +1297,7 @@ contains
 
    moduleFound = .false.
    if (POP_myTask == POP_masterTask .and. isOpen) then
-      moduleSearch: do 
+      moduleSearch: do
 
          ! read line from input file
          read(iunit, '(a100)', iostat=istat) inputString
@@ -1321,7 +1321,7 @@ contains
          else
             cycle moduleSearch
          endif
-         
+
       end do moduleSearch
 
       if (.not. moduleFound) then
@@ -1337,7 +1337,7 @@ contains
 
    variableFound = .false.
    if (POP_myTask == POP_masterTask .and. moduleFound) then
-      varSearch: do 
+      varSearch: do
 
          ! read line from input file: should be name = value
          read(iunit, '(a100)', iostat=istat) inputString

@@ -8,7 +8,7 @@
 !
 ! !DESCRIPTION:
 !  This module contains the declarations for all required io
-!  data types and several operators for those data types. It also 
+!  data types and several operators for those data types. It also
 !  contains several global parameters used by various io operations
 !  and an io unit manager.
 !
@@ -87,7 +87,7 @@
       real(r8),    dimension(:,:,:,:), pointer    :: field_d_3d
       type (VAR_desc_t) :: varDesc
       type (IO_desc_t), pointer :: ioDesc
-      logical :: set_ioDesc   
+      logical :: set_ioDesc
       logical :: set_ioFrame
    end type
 
@@ -161,7 +161,7 @@
       rec_type_dbl  = -3       !
 
    character (12), public :: &
-      nml_filename = 'pop2_in'  ! namelist input file name
+      nml_filename = 'pop_in'  ! namelist input file name
 
    integer (i4), public :: &
       num_iotasks   ! num of procs to use for parallel io
@@ -214,7 +214,7 @@
                        add_attrib_file_int,  &
                        add_attrib_file_real, &
                        add_attrib_file_dbl
-   end interface 
+   end interface
 
    interface extract_attrib_file
       module procedure extract_attrib_file_char, &
@@ -222,7 +222,7 @@
                        extract_attrib_file_int,  &
                        extract_attrib_file_real, &
                        extract_attrib_file_dbl
-   end interface 
+   end interface
 
    interface add_attrib_io_field
       module procedure add_attrib_io_field_char, &
@@ -230,7 +230,7 @@
                        add_attrib_io_field_int,  &
                        add_attrib_io_field_real, &
                        add_attrib_io_field_dbl
-   end interface 
+   end interface
 
    interface extract_attrib_io_field
       module procedure extract_attrib_io_field_char, &
@@ -238,7 +238,7 @@
                        extract_attrib_io_field_int,  &
                        extract_attrib_io_field_real, &
                        extract_attrib_io_field_dbl
-   end interface 
+   end interface
 
 !EOC
 !***********************************************************************
@@ -584,7 +584,7 @@ contains
 !-----------------------------------------------------------------------
 !
 !  if not the first, see if it already exists and over-write value
-!  if does not exist, resize the attribute array and store the 
+!  if does not exist, resize the attribute array and store the
 !  attributes
 !
 !-----------------------------------------------------------------------
@@ -700,7 +700,7 @@ contains
 !-----------------------------------------------------------------------
 !
 !  if not the first, see if it already exists and over-write value
-!  if does not exist, resize the attribute array and store the 
+!  if does not exist, resize the attribute array and store the
 !  attributes
 !
 !-----------------------------------------------------------------------
@@ -817,7 +817,7 @@ contains
 !-----------------------------------------------------------------------
 !
 !  if not the first, see if it already exists and over-write value
-!  if does not exist, resize the attribute array and store the 
+!  if does not exist, resize the attribute array and store the
 !  attributes
 !
 !-----------------------------------------------------------------------
@@ -934,7 +934,7 @@ contains
 !-----------------------------------------------------------------------
 !
 !  if not the first, see if it already exists and over-write value
-!  if does not exist, resize the attribute array and store the 
+!  if does not exist, resize the attribute array and store the
 !  attributes
 !
 !-----------------------------------------------------------------------
@@ -993,7 +993,7 @@ contains
 
 ! !DESCRIPTION:
 !  This routine adds a global file attribute to an io file.  This
-!  particular instantiation adds a double precision attribute, but is 
+!  particular instantiation adds a double precision attribute, but is
 !  aliased to the generic routine name add\_attrib\_file.
 !
 ! !REVISION HISTORY:
@@ -1051,7 +1051,7 @@ contains
 !-----------------------------------------------------------------------
 !
 !  if not the first, see if it already exists and over-write value
-!  if does not exist, resize the attribute array and store the 
+!  if does not exist, resize the attribute array and store the
 !  attributes
 !
 !-----------------------------------------------------------------------
@@ -1110,7 +1110,7 @@ contains
 
 ! !DESCRIPTION:
 !  This routine extracts a global file attribute from an io file
-!  descriptor based on the attribute name.  This particular 
+!  descriptor based on the attribute name.  This particular
 !  instantiation extracts a character attribute, but is aliased
 !  to the generic routine name extract\_attrib\_file.
 !
@@ -1232,7 +1232,7 @@ contains
 
 ! !DESCRIPTION:
 !  This routine extracts a global file attribute from an io file
-!  descriptor based on the attribute name.  This particular 
+!  descriptor based on the attribute name.  This particular
 !  instantiation extracts a logical attribute, but is aliased
 !  to the generic routine name extract\_attrib\_file.
 !
@@ -1334,7 +1334,7 @@ contains
 
 ! !DESCRIPTION:
 !  This routine extracts a global file attribute from an io file
-!  descriptor based on the attribute name.  This particular 
+!  descriptor based on the attribute name.  This particular
 !  instantiation extracts an integer attribute, but is aliased
 !  to the generic routine name extract\_attrib\_file.
 !
@@ -1444,7 +1444,7 @@ contains
 
 ! !DESCRIPTION:
 !  This routine extracts a global file attribute from an io file
-!  descriptor based on the attribute name.  This particular 
+!  descriptor based on the attribute name.  This particular
 !  instantiation extracts a real attribute, but is aliased
 !  to the generic routine name extract\_attrib\_file.
 !
@@ -1537,7 +1537,7 @@ contains
 
 ! !DESCRIPTION:
 !  This routine extracts a global file attribute from an io file
-!  descriptor based on the attribute name.  This particular 
+!  descriptor based on the attribute name.  This particular
 !  instantiation extracts a double precision attribute, but is aliased
 !  to the generic routine name extract\_attrib\_file.
 !
@@ -1829,7 +1829,7 @@ contains
 !BOC
 !-----------------------------------------------------------------------
 !
-!  local variables 
+!  local variables
 !
 !-----------------------------------------------------------------------
 
@@ -1909,7 +1909,7 @@ contains
    ! If true, call pio_set_ioFRAME
    if (lactive_time_dim) then
       descriptor%set_ioFrame = .true.
-   else	
+   else
       descriptor%set_ioFrame = .false.
    end if
 
@@ -1983,8 +1983,8 @@ contains
 
    else
       descriptor%nfield_dims = 0
-      ! field_dim is not used for scalars 
-     
+      ! field_dim is not used for scalars
+
    end if
 
    nullify (descriptor%field_i_1d)
@@ -2205,7 +2205,7 @@ contains
 !-----------------------------------------------------------------------
 !
 !  if not the first, see if it exists and over-write value
-!  if does not exist, resize the attribute array and store the 
+!  if does not exist, resize the attribute array and store the
 !  attributes
 !
 !-----------------------------------------------------------------------
@@ -2597,7 +2597,7 @@ contains
 
 ! !DESCRIPTION:
 !  This routine adds a field attribute to an io field.  This
-!  particular instantiation adds a double precision attribute, but is 
+!  particular instantiation adds a double precision attribute, but is
 !  aliased to the generic routine name add\_attrib\_io\_field.
 !
 ! !REVISION HISTORY:
@@ -2710,7 +2710,7 @@ contains
 
 ! !DESCRIPTION:
 !  This routine extracts an attribute from an io field.  This
-!  particular instantiation extracts a character attribute, but is 
+!  particular instantiation extracts a character attribute, but is
 !  aliased to the generic routine name extract\_attrib\_io\_field.
 !
 ! !REVISION HISTORY:
@@ -2818,7 +2818,7 @@ contains
 
 ! !DESCRIPTION:
 !  This routine extracts an attribute from an io field.  This
-!  particular instantiation extracts a logical attribute, but is 
+!  particular instantiation extracts a logical attribute, but is
 !  aliased to the generic routine name extract\_attrib\_io\_field.
 !
 ! !REVISION HISTORY:
@@ -2905,7 +2905,7 @@ contains
 
 ! !DESCRIPTION:
 !  This routine extracts an attribute from an io field.  This
-!  particular instantiation extracts an integer attribute, but is 
+!  particular instantiation extracts an integer attribute, but is
 !  aliased to the generic routine name extract\_attrib\_io\_field.
 !
 ! !REVISION HISTORY:
@@ -3001,7 +3001,7 @@ contains
 
 ! !DESCRIPTION:
 !  This routine extracts an attribute from an io field.  This
-!  particular instantiation extracts a real attribute, but is 
+!  particular instantiation extracts a real attribute, but is
 !  aliased to the generic routine name extract\_attrib\_io\_field.
 !
 ! !REVISION HISTORY:
@@ -3322,7 +3322,7 @@ contains
 
    if (my_task == master_task) then
 #ifdef CCSMCOUPLED
-      nml_filename = 'pop2_in' // trim(inst_suffix)
+      nml_filename = 'pop_in' // trim(inst_suffix)
       call get_unit(nml_in)
 #endif
       open (nml_in, file=nml_filename, status='old',iostat=nml_error)
@@ -3476,7 +3476,7 @@ contains
 !-----------------------------------------------------------------------
 
 #ifdef CCSMCOUPLED
-   call shr_file_freeUnit(iunit)	
+   call shr_file_freeUnit(iunit)
 #else
    in_use(iunit) = .false.  !  that was easy...
 #endif
