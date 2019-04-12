@@ -1,5 +1,5 @@
-#  An integer [1,9] in the first column identifies the field's output stream number.
-#  To deactivate a field, replace the output stream number with  # or !
+#  An integer [1,9] in the first column identifies the field's output stream number. 
+#  To deactivate a field, replace the output stream number with  # or ! 
 1  QFLUX
 1  BSF
 1  TFW_T
@@ -101,5 +101,3 @@
 #  SALT_MIN
 #  TEMP_MAX
 #  TEMP_MIN
-#  TEMP_27
-#  TEMP_43
