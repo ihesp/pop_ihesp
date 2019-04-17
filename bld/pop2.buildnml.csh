@@ -21,8 +21,8 @@ if ($POP_AUTO_DECOMP == 'true') then
   endif
 endif
 
-if !(-d $CASEBUILD/pop2conf) mkdir $CASEBUILD/pop2conf || exit 1
-cd $CASEBUILD/pop2conf || exit -1
+if !(-d $CASEBUILD/popconf) mkdir $CASEBUILD/popconf || exit 1
+cd $CASEBUILD/popconf || exit -1
 
 if (($GET_REFCASE == 'TRUE') && ($RUN_TYPE != 'startup') &&                    \
     ($CONTINUE_RUN == 'FALSE')) then
@@ -36,7 +36,7 @@ if (($GET_REFCASE == 'TRUE') && ($RUN_TYPE != 'startup') &&                    \
   chmod u+w $RUNDIR/rpointer.ocn* >&! /dev/null
 endif
 
-set default_ocn_in_filename = "pop2_in"
+set default_ocn_in_filename = "pop_in"
 set inst_counter = 1
 
 while ($inst_counter <= $NINST_OCN)
@@ -90,10 +90,10 @@ while ($inst_counter <= $NINST_OCN)
     endif
   endif
 
-  if (-e $CASEROOT/user_nl_pop2${inst_string})                                 \
+  if (-e $CASEROOT/user_nl_pop${inst_string})                                 \
     $UTILROOT/Tools/user_nlcreate                                              \
-               -user_nl_file $CASEROOT/user_nl_pop2${inst_string}              \
-               -namelist_name pop2_inparm >! $CASEBUILD/pop2conf/cesm_namelist 
+               -user_nl_file $CASEROOT/user_nl_pop${inst_string}              \
+               -namelist_name pop_inparm >! $CASEBUILD/popconf/cesm_namelist 
   
   # Check to see if "-preview" flag should be passed
   if ( $?PREVIEW_NML ) then
@@ -103,16 +103,16 @@ while ($inst_counter <= $NINST_OCN)
   endif
 
   # Check to see if build-namelist exists in SourceMods
-  if (-e $CASEROOT/SourceMods/src.pop2/build-namelist) then
-    set BLD_NML_DIR = $CASEROOT/SourceMods/src.pop2
-    set CFG_FLAG = "-cfg_dir $CODEROOT/ocn/pop2/bld"
+  if (-e $CASEROOT/SourceMods/src.pop/build-namelist) then
+    set BLD_NML_DIR = $CASEROOT/SourceMods/src.pop
+    set CFG_FLAG = "-cfg_dir $CODEROOT/ocn/pop/bld"
   else
-    set BLD_NML_DIR = $CODEROOT/ocn/pop2/bld
+    set BLD_NML_DIR = $CODEROOT/ocn/pop/bld
     set CFG_FLAG = ""
   endif
   
   $BLD_NML_DIR/build-namelist $CFG_FLAG $PREVIEW_FLAG                          \
-            -infile $CASEBUILD/pop2conf/cesm_namelist                          \
+            -infile $CASEBUILD/popconf/cesm_namelist                          \
             -caseroot $CASEROOT                                                \
             -casebuild $CASEBUILD                                              \
             -scriptsroot $SCRIPTSROOT \
@@ -120,15 +120,15 @@ while ($inst_counter <= $NINST_OCN)
             -ocn_grid "$OCN_GRID" || exit -1  
 
   if (-d ${RUNDIR}) then
-    cp $CASEBUILD/pop2conf/pop2_in ${RUNDIR}/$ocn_in_filename || exit -2
+    cp $CASEBUILD/popconf/pop_in ${RUNDIR}/$ocn_in_filename || exit -2
   endif
 
-  if (-f $RUNDIR/pop2_in${inst_string})                                        \
-    rm $RUNDIR/pop2_in${inst_string}
+  if (-f $RUNDIR/pop_in${inst_string})                                        \
+    rm $RUNDIR/pop_in${inst_string}
 
-  cp -fp $CASEBUILD/pop2conf/pop2_in                                           \
-         ${RUNDIR}/pop2_in${inst_string}
-  cp -fp $CASEBUILD/pop2conf/${OCN_GRID}_tavg_contents                         \
+  cp -fp $CASEBUILD/popconf/pop_in                                           \
+         ${RUNDIR}/pop_in${inst_string}
+  cp -fp $CASEBUILD/popconf/${OCN_GRID}_tavg_contents                         \
          ${RUNDIR}/${OCN_GRID}_tavg_contents
 
   @ inst_counter = $inst_counter + 1
